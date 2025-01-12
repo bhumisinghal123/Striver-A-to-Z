@@ -5,5 +5,6 @@ int main()
 {
      int x, y;
      cin >> x >> y;
-     cout << "The value of x:" << x << "The value of y" << y << endl;
+     cout << "The value of x: " << x << endl
+          << "The value of y: " << y << endl;
 }
