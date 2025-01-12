@@ -4,43 +4,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-public:
-  int dataTypeSize(string str)
-  {
-    if (str == "Character")
-    {
-      return sizeof(char);
-    }
-    else if (str == "Integer")
-    {
-      return sizeof(int);
-    }
-    else if (str == "Long")
-    {
-      return sizeof(long);
-    }
-    else if (str == "Float")
-    {
-      return sizeof(float);
-    }
-    else if (str == "Double")
-    {
-      return sizeof(double);
-    }
-    else
-    {
-      return -1;
-    }
-  }
-};
-
 int main()
 {
   string str;
   cin >> str;
-  Solution obj;
-  cout << obj.dataTypeSize(str);
+
+  if (str == "Character")
+  {
+    cout << sizeof(char);
+  }
+  else if (str == "Integer")
+  {
+    cout << sizeof(int);
+  }
+  else if (str == "Long")
+  {
+    cout << sizeof(long);
+  }
+  else if (str == "Float")
+  {
+    cout << sizeof(float);
+  }
+  else if (str == "Double")
+  {
+    cout << sizeof(double);
+  }
+  else
+  {
+    cout << "Invalid choice";
+  }
   return 0;
 }
