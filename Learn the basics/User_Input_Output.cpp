@@ -3,12 +3,11 @@ using namespace std;
 
 int main()
 {
-     int x, y, z;
+     int x, y;
 
      cin >> x >> y;
 
-     cout << "The value of x: " << x << endl
-          << "The value of y: " << y << endl;
+     cout << "The value of x: " << x << "and y: " << y << endl;
 
      return 0;
 }
