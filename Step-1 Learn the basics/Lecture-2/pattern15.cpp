@@ -5,10 +5,9 @@ void print(int n)
 {
   for (int i = 1; i <= n; i++)
   {
-
-    for (int j = 1; j <= i; j++)
+    for (char ch = 'A'; ch <= 'A' + (n - i); ch++)
     {
-      cout << i << " ";
+      cout << ch;
     }
     cout << endl;
   }
