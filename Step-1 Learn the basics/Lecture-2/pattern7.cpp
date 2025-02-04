@@ -30,6 +30,6 @@ int main()
     int n;
     cin >> n;
     print(n);
-    return 0;
   }
+  return 0;
 }
