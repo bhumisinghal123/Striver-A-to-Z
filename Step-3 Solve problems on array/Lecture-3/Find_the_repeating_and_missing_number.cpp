@@ -46,6 +46,7 @@ vector<int> findMissingRepeatingNumbers(vector<int> a)
   return {(int)x, (int)y};
   */
 
+  /*
   long long n = a.size();
   int xr = 0;
   for (int i = 0; i < n; i++)
@@ -74,7 +75,7 @@ vector<int> findMissingRepeatingNumbers(vector<int> a)
     // zeroth club
     else
     {
-      zero = one ^ a[i];
+      zero = zero ^ a[i];
     }
   }
 
@@ -88,7 +89,56 @@ vector<int> findMissingRepeatingNumbers(vector<int> a)
     // zeroth club
     else
     {
-      zero = one ^ i;
+      zero = zero ^ i;
+    }
+  }
+
+  int cnt = 0;
+  for (int i = 0; i < n; i++)
+  {
+    if (a[i] == zero)
+      cnt++;
+  }
+  if (cnt == 2)
+    return {zero, one};
+  return {one, zero};
+  */
+
+  long long n = a.size();
+  int xr = 0;
+  for (int i = 0; i < n; i++)
+  {
+    xr = xr ^ a[i];
+    xr = xr ^ (i + 1);
+  }
+  int number = xr & ~(xr - 1);
+  int zero = 0;
+  int one = 0;
+  for (int i = 0; i < n; i++)
+  {
+    // part of 1 club
+    if ((a[i] & number) != 0)
+    {
+      one = one ^ a[i];
+    }
+    // zeroth club
+    else
+    {
+      zero = zero ^ a[i];
+    }
+  }
+
+  for (int i = 1; i <= n; i++)
+  {
+    // part of 1 club
+    if ((i & number) != 0)
+    {
+      one = one ^ i;
+    }
+    // zeroth club
+    else
+    {
+      zero = zero ^ i;
     }
   }
 
