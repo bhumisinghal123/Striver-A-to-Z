@@ -1,8 +1,41 @@
+/*
+#include <bits/stdc++.h>
+using namespace std;
+
+int solve(vector<int>& a) {
+    int maxLen = 0;
+    unordered_map<int, int> sumIndexMap;
+    int sum = 0;
+
+    for (int i = 0; i < a.size(); i++) {
+        sum += a[i];
+
+        if (sum == 0) {
+            maxLen = i + 1;
+        } else if (sumIndexMap.find(sum) != sumIndexMap.end()) {
+            maxLen = max(maxLen, i - sumIndexMap[sum]);
+        } else {
+            sumIndexMap[sum] = i;
+        }
+    }
+
+    return maxLen;
+}
+
+int main() {
+    vector<int> a = {9, -3, 3, -1, 6, -5};
+    cout << solve(a) << endl;
+
+    return 0;
+}
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int maxLen(int A[], int n)
 {
+  // Your code here
   unordered_map<int, int> mpp;
   int maxi = 0;
   int sum = 0;
@@ -25,18 +58,6 @@ int maxLen(int A[], int n)
       }
     }
   }
-  return maxi;
-}
 
-int main()
-{
-  int n;
-  cin >> n;
-  int arr[n];
-  for (int i = 0; i < n; i++)
-  {
-    cin >> arr[i];
-  }
-  cout << maxLen(arr, n);
-  return 0;
+  return maxi;
 }

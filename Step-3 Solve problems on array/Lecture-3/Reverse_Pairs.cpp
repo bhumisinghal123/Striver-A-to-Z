@@ -2,24 +2,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int numberOfInversions(vector<int>&a, int n) {
+int countPairs(vector<int>&a, int n) {
 
     // Count the number of pairs:
     int cnt = 0;
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
-            if (a[i] > a[j]) cnt++;
+            if (a[i] > 2 * a[j]) cnt++;
         }
     }
     return cnt;
 }
 
+int team(vector <int> & skill, int n) {
+    return countPairs(skill, n);
+}
+
 int main()
 {
-    vector<int> a = {5, 4, 3, 2, 1};
+    vector<int> a = {4, 1, 2, 3, 1};
     int n = 5;
-    int cnt = numberOfInversions(a, n);
-    cout << "The number of inversions is: "
+    int cnt = team(a, n);
+    cout << "The number of reverse pair is: "
          << cnt << endl;
     return 0;
 }
@@ -28,14 +32,11 @@ int main()
 #include <bits/stdc++.h>
 using namespace std;
 
-int merge(vector<int> &arr, int low, int mid, int high)
+void merge(vector<int> &arr, int low, int mid, int high)
 {
   vector<int> temp;    // temporary array
   int left = low;      // starting index of left half of arr
   int right = mid + 1; // starting index of right half of arr
-
-  // Modification 1: cnt variable to count the pairs:
-  int cnt = 0;
 
   // storing elements in the temporary array in a sorted manner//
 
@@ -49,7 +50,6 @@ int merge(vector<int> &arr, int low, int mid, int high)
     else
     {
       temp.push_back(arr[right]);
-      cnt += (mid - left + 1); // Modification 2
       right++;
     }
   }
@@ -74,8 +74,19 @@ int merge(vector<int> &arr, int low, int mid, int high)
   {
     arr[i] = temp[i - low];
   }
+}
 
-  return cnt; // Modification 3
+int countPairs(vector<int> &arr, int low, int mid, int high)
+{
+  int right = mid + 1;
+  int cnt = 0;
+  for (int i = low; i <= mid; i++)
+  {
+    while (right <= high && arr[i] > 2 * arr[right])
+      right++;
+    cnt += (right - (mid + 1));
+  }
+  return cnt;
 }
 
 int mergeSort(vector<int> &arr, int low, int high)
@@ -84,25 +95,24 @@ int mergeSort(vector<int> &arr, int low, int high)
   if (low >= high)
     return cnt;
   int mid = (low + high) / 2;
-  cnt += mergeSort(arr, low, mid);      // left half
-  cnt += mergeSort(arr, mid + 1, high); // right half
-  cnt += merge(arr, low, mid, high);    // merging sorted halves
+  cnt += mergeSort(arr, low, mid);        // left half
+  cnt += mergeSort(arr, mid + 1, high);   // right half
+  cnt += countPairs(arr, low, mid, high); // Modification
+  merge(arr, low, mid, high);             // merging sorted halves
   return cnt;
 }
 
-int numberOfInversions(vector<int> &a, int n)
+int team(vector<int> &skill, int n)
 {
-
-  // Count the number of pairs:
-  return mergeSort(a, 0, n - 1);
+  return mergeSort(skill, 0, n - 1);
 }
 
 int main()
 {
-  vector<int> a = {5, 4, 3, 2, 1};
+  vector<int> a = {4, 1, 2, 3, 1};
   int n = 5;
-  int cnt = numberOfInversions(a, n);
-  cout << "The number of inversions are: "
+  int cnt = team(a, n);
+  cout << "The number of reverse pair is: "
        << cnt << endl;
   return 0;
 }
