@@ -1,71 +1,65 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 class InversionCounter
 {
 private:
-  long long cnt;
+  vector<int> arr;
 
-  void merge(vector<int> &arr, int low, int mid, int high)
+  int merge(int low, int mid, int high)
   {
     vector<int> temp;
-    int left = low;
-    int right = mid + 1;
+    int left = low, right = mid + 1;
+    int cnt = 0;
 
     while (left <= mid && right <= high)
     {
       if (arr[left] <= arr[right])
       {
-        temp.push_back(arr[left]);
-        left++;
+        temp.push_back(arr[left++]);
       }
       else
       {
-        temp.push_back(arr[right]);
-        cnt += (mid - left + 1);
-        right++;
+        temp.push_back(arr[right++]);
+        cnt += (mid - left + 1); // count inversions
       }
     }
 
     while (left <= mid)
-    {
-      temp.push_back(arr[left]);
-      left++;
-    }
-
+      temp.push_back(arr[left++]);
     while (right <= high)
-    {
-      temp.push_back(arr[right]);
-      right++;
-    }
+      temp.push_back(arr[right++]);
 
     for (int i = low; i <= high; i++)
     {
       arr[i] = temp[i - low];
     }
+
+    return cnt;
   }
 
-  void mergeSort(vector<int> &arr, int low, int high)
+  int mergeSort(int low, int high)
   {
     if (low >= high)
-      return;
+      return 0;
     int mid = (low + high) / 2;
-    mergeSort(arr, low, mid);
-    mergeSort(arr, mid + 1, high);
-    merge(arr, low, mid, high);
+    int cnt = 0;
+    cnt += mergeSort(low, mid);
+    cnt += mergeSort(mid + 1, high);
+    cnt += merge(low, mid, high);
+    return cnt;
   }
 
 public:
-  InversionCounter()
+  InversionCounter(const vector<int> &input)
   {
-    cnt = 0;
+    arr = input;
   }
 
-  long long countInversions(vector<int> &arr)
+  long long countInversions()
   {
-    cnt = 0;
-    mergeSort(arr, 0, arr.size() - 1);
-    return cnt;
+    return mergeSort(0, arr.size() - 1);
   }
 };
 
@@ -75,15 +69,14 @@ int main()
   cout << "Enter number of elements: ";
   cin >> n;
   vector<int> arr(n);
-  cout << "Enter elements:\n";
+  cout << "Enter the elements:\n";
   for (int i = 0; i < n; i++)
   {
     cin >> arr[i];
   }
 
-  InversionCounter ic;
-  long long inversions = ic.countInversions(arr);
-  cout << "Number of inversions: " << inversions << endl;
+  InversionCounter counter(arr);
+  cout << "Number of Inversions: " << counter.countInversions() << endl;
 
   return 0;
 }
