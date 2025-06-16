@@ -79,7 +79,7 @@ bool possible(vector<int> &arr, int day, int m, int k)
     }
   }
   noOfB += (cnt / k);
-  cnt = 0;
+  return noOfB >= m;
 }
 
 int roseGarden(vector<int> arr, int r, int b)
