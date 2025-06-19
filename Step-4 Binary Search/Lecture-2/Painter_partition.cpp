@@ -42,16 +42,16 @@ int findPages(vector<int> &arr, int n, int m)
   return low;
 }
 
-int largestSubarraySumMinimized(vector<int> a, int k)
+int findLargestMinDistance(vector<int> &boards, int k)
 {
-  return findPages(a, a.size(), k);
+  return findPages(boards, boards.size(), k);
 }
 
 int main()
 {
   vector<int> arr = {25, 46, 28, 49, 24};
   int m = 2;
-  int ans = largestSubarraySumMinimized(arr, m);
+  int ans = findLargestMinDistance(arr, m);
   cout << "The answer is: " << ans << "\n";
   return 0;
 }
