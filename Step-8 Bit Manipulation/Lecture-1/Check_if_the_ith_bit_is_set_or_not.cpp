@@ -1,41 +1,55 @@
-1)	Swapping Two Numbers : Num1=(Num1^Num2);
-Num2 = (Num1 ^ Num2);
-Num1 = (Num1 ^ Num2);
+#include <iostream>
+using namespace std;
 
-2)	Check If i’th bit is set or not:  if((Num&(1<<i))!=0){ cout<<”SET”;}
-else
+bool isBitSet(int num, int i)
 {
-  cout <<”NOT SET”;
+  return (num & (1 << i)) != 0;
 }
 
-3)	Set The i’th bit : Num=(Num|(1<<i));
-
-4)	Clear the i’th bit : Num=(Num&(~(1<<i)));
-
-5)	Toggle the i’th bit : Num=(Num^(1<<i));
-
-6)	Remove the last set bit (RightMost) : Num=(Num&(Num-1));
-
-7)	Check power of 2: if((Num&(Num-1))==0){ cout<<”Power of 2”;}
-else
+int main()
 {
-  cout <<”Not a power of 2”;
+  int number, bitIndex;
+
+  cout << "Enter a number: ";
+  cin >> number;
+
+  cout << "Enter the bit index to check (0-based): ";
+  cin >> bitIndex;
+
+  if (isBitSet(number, bitIndex))
+    cout << "The " << bitIndex << "-th bit is SET (1)." << endl;
+  else
+    cout << "The " << bitIndex << "-th bit is NOT set (0)." << endl;
+
+  return 0;
 }
 
-8)	Check Number is odd or even : if((Num&1)==1){cout<<”odd”;}
-else
-{
-  cout <<”even”;
-}
+// 1)	Swapping Two Numbers : Num1=(Num1^Num2);
+// Num2 = (Num1 ^ Num2);
+// Num1 = (Num1 ^ Num2);
 
-9)	Divide a number by 2 : Num=(Num>>1);
+// 3)	Set The i’th bit : Num=(Num|(1<<i));
 
-10)	Count number of set bits (C++ user) :  int ans= __builtin_popcount(Num);
+// 4)	Clear the i’th bit : Num=(Num&(~(1<<i)));
 
-11)	Count number of set bits (Other language) :  int count=0;
-while (Num != 0)
-{
-  Num = (Num & (Num - 1));
-  count++
-}
-return count;
+// 5)	Toggle the i’th bit : Num=(Num^(1<<i));
+
+// 6)	Remove the last set bit (RightMost) : Num=(Num&(Num-1));
+
+// 7)	Check power of 2: if((Num&(Num-1))==0){ cout<<”Power of 2”;}
+// else
+// {
+//   cout <<”Not a power of 2”;
+// }
+
+// 9)	Divide a number by 2 : Num=(Num>>1);
+
+// 10)	Count number of set bits (C++ user) :  int ans= __builtin_popcount(Num);
+
+// 11)	Count number of set bits (Other language) :  int count=0;
+// while (Num != 0)
+// {
+//   Num = (Num & (Num - 1));
+//   count++
+// }
+// return count;
