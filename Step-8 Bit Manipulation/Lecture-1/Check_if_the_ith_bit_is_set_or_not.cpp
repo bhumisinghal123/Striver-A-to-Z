@@ -24,14 +24,6 @@ int main()
   return 0;
 }
 
-// 1)	Swapping Two Numbers : Num1=(Num1^Num2);
-// Num2 = (Num1 ^ Num2);
-// Num1 = (Num1 ^ Num2);
-
-// 3)	Set The i’th bit : Num=(Num|(1<<i));
-
-// 4)	Clear the i’th bit : Num=(Num&(~(1<<i)));
-
 // 5)	Toggle the i’th bit : Num=(Num^(1<<i));
 
 // 6)	Remove the last set bit (RightMost) : Num=(Num&(Num-1));
