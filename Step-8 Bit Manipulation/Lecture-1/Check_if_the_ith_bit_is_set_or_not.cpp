@@ -24,8 +24,8 @@ int main()
   return 0;
 }
 
-// 5)	Toggle the i’th bit : Num=(Num^(1<<i));
+// 1)	Toggle the i’th bit : Num=(Num^(1<<i));
 
-// 6)	Remove the last set bit (RightMost) : Num=(Num&(Num-1));
+// 2)	Remove the last set bit (RightMost) : Num=(Num&(Num-1));
 
-// 9)	Divide a number by 2 : Num=(Num>>1);
+// 3)	Divide a number by 2 : Num=(Num>>1);
