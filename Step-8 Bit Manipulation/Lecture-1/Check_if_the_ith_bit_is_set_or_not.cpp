@@ -37,13 +37,3 @@ int main()
 // 6)	Remove the last set bit (RightMost) : Num=(Num&(Num-1));
 
 // 9)	Divide a number by 2 : Num=(Num>>1);
-
-// 10)	Count number of set bits (C++ user) :  int ans= __builtin_popcount(Num);
-
-// 11)	Count number of set bits (Other language) :  int count=0;
-// while (Num != 0)
-// {
-//   Num = (Num & (Num - 1));
-//   count++
-// }
-// return count;
