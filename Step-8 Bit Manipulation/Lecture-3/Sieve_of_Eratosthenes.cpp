@@ -49,7 +49,7 @@ using namespace std;
 
 int primeNo(int n)
 {
-  int prime[n + 1];
+  vector<int> prime(n + 1, 1);
   for (int i = 2; i <= n; i++)
   {
     prime[i] = 1;
