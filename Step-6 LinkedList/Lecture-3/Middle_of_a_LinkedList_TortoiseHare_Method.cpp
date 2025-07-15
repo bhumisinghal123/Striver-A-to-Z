@@ -17,6 +17,29 @@ struct Node
   }
 };
 
+Node *convertArr2LL(vector<int> &arr)
+{
+  Node *head = new Node(arr[0]);
+  Node *mover = head;
+  for (int i = 1; i < arr.size(); i++)
+  {
+    Node *temp = new Node(arr[i]);
+    mover->next = temp;
+    mover = temp;
+  }
+  return head;
+}
+
+void print(Node *head)
+{
+  while (head != NULL)
+  {
+    cout << head->data << " ";
+    head = head->next;
+  }
+  cout << endl;
+}
+
 Node *addTwoNumbers(Node *num1, Node *num2)
 {
   Node *dummyHead = new Node(-1);
@@ -48,29 +71,6 @@ Node *addTwoNumbers(Node *num1, Node *num2)
     curr->next = newNode;
   }
   return dummyHead->next;
-}
-
-Node *convertArr2LL(vector<int> &arr)
-{
-  Node *head = new Node(arr[0]);
-  Node *mover = head;
-  for (int i = 1; i < arr.size(); i++)
-  {
-    Node *temp = new Node(arr[i]);
-    mover->next = temp;
-    mover = temp;
-  }
-  return head;
-}
-
-void print(Node *head)
-{
-  while (head != NULL)
-  {
-    cout << head->data << " ";
-    head = head->next;
-  }
-  cout << endl;
 }
 
 int main()
