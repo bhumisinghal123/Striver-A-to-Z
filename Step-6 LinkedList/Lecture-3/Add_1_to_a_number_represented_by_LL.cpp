@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node
+{
+public:
+  int data;
+  Node *next;
+  Node(int data1, Node *next1)
+  {
+    data = data1;
+    next = next1;
+  }
+  Node(int data1)
+  {
+    data = data1;
+    next = nullptr;
+  }
+};
+
+int addHelper(Node *temp)
+{
+  if (temp == NULL)
+  {
+    return 1;
+  }
+  int carry = addHelper(temp->next);
+  temp->data += carry;
+  if (temp->data < 10)
+    return 0;
+  temp->data = 0;
+  return 1;
+}
+
+Node *addOne(Node *head)
+{
+  int carry = addHelper(head);
+  if (carry == 1)
+  {
+    Node *newNode = new Node(1);
+    newNode->next = head;
+    head = newNode;
+  }
+  return head;
+}
+
+int main()
+{
+  Node *head = new Node(9);
+  head->next = new Node(9);
+  head->next->next = new Node(9);
+
+  cout << "Original number: ";
+  Node *temp = head;
+  while (temp != nullptr)
+  {
+    cout << temp->data;
+    temp = temp->next;
+  }
+  cout << endl;
+
+  head = addOne(head);
+
+  cout << "After adding one: ";
+  temp = head;
+  while (temp != nullptr)
+  {
+    cout << temp->data;
+    temp = temp->next;
+  }
+  cout << endl;
+
+  return 0;
+}
