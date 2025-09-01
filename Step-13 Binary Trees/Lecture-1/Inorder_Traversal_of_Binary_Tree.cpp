@@ -36,7 +36,7 @@ int main()
   root->left->right = new Node(5);
   vector<int> result = inOrder(root);
 
-  cout << "Preorder Traversal: ";
+  cout << "Inorder Traversal: ";
   for (int val : result)
   {
     cout << val << " ";

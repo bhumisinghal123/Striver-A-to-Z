@@ -36,7 +36,7 @@ int main()
   root->left->right = new Node(5);
   vector<int> result = postOrder(root);
 
-  cout << "Preorder Traversal: ";
+  cout << "Postorder Traversal: ";
   for (int val : result)
   {
     cout << val << " ";
