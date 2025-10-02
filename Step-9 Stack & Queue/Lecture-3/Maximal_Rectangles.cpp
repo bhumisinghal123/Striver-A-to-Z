@@ -47,8 +47,8 @@ public:
       int sum = 0;
       for (int i = 0; i < n; i++)
       {
-        sum += matrix[i][j];
-        if (matrix[i][j] == 0)
+        sum += (matrix[i][j] - '0');
+        if (matrix[i][j] == '0')
         {
           prefixSum[i][j] = 0;
           sum = 0;
