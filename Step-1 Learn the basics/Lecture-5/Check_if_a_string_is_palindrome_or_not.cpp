@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 bool f(int i, string &s)
 {
   if (i >= s.size() / 2)
