@@ -1,0 +1,1 @@
+directed graph - indegree and outdegree undirected graph - degree
