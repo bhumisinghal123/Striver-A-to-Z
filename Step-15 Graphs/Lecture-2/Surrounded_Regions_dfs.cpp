@@ -13,7 +13,7 @@ private:
     {
       int nrow = row + delrow[i];
       int ncol = col + delcol[i];
-      if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && !vis[nrow][ncol] && mat[nrow][ncol] == '0')
+      if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && !vis[nrow][ncol] && mat[nrow][ncol] == 'O')
       {
         dfs(nrow, ncol, vis, mat, delrow, delcol);
       }
@@ -28,11 +28,11 @@ public:
     vector<vector<int>> vis(n, vector<int>(m, 0));
     for (int j = 0; j < m; j++)
     {
-      if (!vis[0][j] && mat[0][j] == '0')
+      if (!vis[0][j] && mat[0][j] == 'O')
       {
         dfs(0, j, vis, mat, delrow, delcol);
       }
-      if (!vis[n - 1][j] && mat[n - 1][j] == '0')
+      if (!vis[n - 1][j] && mat[n - 1][j] == 'O')
       {
         dfs(n - 1, j, vis, mat, delrow, delcol);
       }
@@ -40,11 +40,11 @@ public:
 
     for (int i = 0; i < n; i++)
     {
-      if (!vis[i][0] && mat[i][0] == '0')
+      if (!vis[i][0] && mat[i][0] == 'O')
       {
         dfs(i, 0, vis, mat, delrow, delcol);
       }
-      if (!vis[i][m - 1] && mat[i][m - 1] == '0')
+      if (!vis[i][m - 1] && mat[i][m - 1] == 'O')
       {
         dfs(i, m - 1, vis, mat, delrow, delcol);
       }
@@ -53,7 +53,7 @@ public:
     {
       for (int j = 0; j < m; j++)
       {
-        if (!vis[i][j] && mat[i][j] == '0')
+        if (!vis[i][j] && mat[i][j] == 'O')
           mat[i][j] = 'X';
       }
     }
@@ -67,9 +67,9 @@ int main()
   Solution sol;
   vector<vector<char>> mat = {
       {'X', 'X', 'X', 'X'},
-      {'X', '0', '0', 'X'},
-      {'X', 'X', '0', 'X'},
-      {'X', '0', 'X', 'X'}};
+      {'X', 'O', 'O', 'X'},
+      {'X', 'X', 'O', 'X'},
+      {'X', 'O', 'X', 'X'}};
   int n = mat.size();
   int m = mat[0].size();
   vector<vector<char>> result = sol.fill(n, m, mat);
