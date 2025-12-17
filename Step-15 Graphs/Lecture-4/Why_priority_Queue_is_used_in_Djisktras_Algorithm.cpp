@@ -1,0 +1,1 @@
+A priority queue(specifically, a min - priority queue) is used in Dijkstra's algorithm to efficiently select the unvisited vertex with the smallest known distance from the source at each step
