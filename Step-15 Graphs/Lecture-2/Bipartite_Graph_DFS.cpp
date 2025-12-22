@@ -1,3 +1,4 @@
+/*
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -36,6 +37,70 @@ public:
       {
         if (dfs(i, 0, color, adj) == false)
           return false;
+      }
+    }
+    return true;
+  }
+};
+
+int main()
+{
+  int V = 5;
+  vector<int> adj[V];
+
+  adj[0].push_back(1);
+  adj[1].push_back(0);
+
+  adj[1].push_back(2);
+  adj[2].push_back(1);
+
+  adj[2].push_back(3);
+  adj[3].push_back(2);
+
+  adj[3].push_back(4);
+  adj[4].push_back(3);
+
+  Solution obj;
+  if (obj.isBipartite(V, adj))
+    cout << "Graph is Bipartite";
+  else
+    cout << "Graph is not Bipartite";
+
+  return 0;
+}
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+  bool isBipartite(int V, vector<int> adj[])
+  {
+    queue<int> q;
+    q.push(0);
+    int color[V];
+    for (int i = 0; i < V; i++)
+      color[i] = -1;
+    color[0] = 0;
+
+    while (!q.empty())
+    {
+      int node = q.front();
+      q.pop();
+
+      for (auto it : adj[node])
+      {
+        if (color[it] == -1)
+        {
+          color[it] = !color[node];
+          q.push(it);
+        }
+        else if (color[it] == color[node])
+        {
+          return false;
+        }
       }
     }
     return true;
