@@ -10,30 +10,37 @@ struct Node
   Node(int val) : data(val), left(nullptr), right(nullptr) {}
 };
 
-class Solution
-{
+class Solution {
 public:
-  int diameter = 0;
-  int calculateHeight(Node *node)
-  {
-    if (node == nullptr)
-    {
-      return 0;
+    int maxi = 0;
+
+    int height(Node* node) {
+        if (node == NULL)
+            return 0;
+
+        int lh = height(node->left);
+        int rh = height(node->right);
+
+        return 1 + max(lh, rh);
     }
 
-    int leftHeight = calculateHeight(node->left);
-    int rightHeight = calculateHeight(node->right);
+    void findMax(Node* node) {
+        if (node == NULL)
+            return;
 
-    diameter = max(diameter, leftHeight + rightHeight);
+        int lh = height(node->left);
+        int rh = height(node->right);
 
-    return 1 + max(rightHeight, leftHeight);
-  }
+        maxi = max(maxi, lh + rh);
 
-  int diameterOfBinaryTree(Node *root)
-  {
-    calculateHeight(root);
-    return diameter;
-  }
+        findMax(node->left);
+        findMax(node->right);
+    }
+
+    int diameterOfBinaryTree(Node* root) {
+        findMax(root);
+        return maxi;
+    }
 };
 
 int main()
