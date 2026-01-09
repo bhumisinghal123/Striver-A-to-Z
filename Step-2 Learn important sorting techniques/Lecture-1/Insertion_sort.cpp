@@ -1,34 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void insertion_sort(int arr[], int n)
+class Solution
 {
-  for (int i = 0; i < n - 1; i++)
+public:
+  vector<int> insertionSort(vector<int> &nums)
   {
-    int j = i;
-    while (j > 0 && arr[j - 1] > arr[j])
+    int n = nums.size();
+
+    for (int i = 1; i < n; i++)
     {
-      int temp = arr[j - 1];
-      arr[j - 1] = arr[j];
-      arr[j] = temp;
-      j--;
+      int key = nums[i];
+      int j = i - 1;
+
+      while (j >= 0 && nums[j] > key)
+      {
+        nums[j + 1] = nums[j];
+        j--;
+      }
+
+      nums[j + 1] = key;
     }
+
+    return nums;
   }
-}
+};
 
 int main()
 {
-  int n;
-  cin >> n;
-  int arr[n];
-  for (int i = 0; i < n; i++)
+  Solution solution;
+
+  vector<int> nums = {13, 46, 24, 52, 20, 9};
+
+  cout << "Before Using Insertion Sort: " << endl;
+  for (int num : nums)
   {
-    cin >> arr[i];
+    cout << num << " ";
   }
-  insertion_sort(arr, n);
-  for (int i = 0; i < n; i++)
+  cout << endl;
+
+  nums = solution.insertionSort(nums);
+
+  cout << "After Using Insertion Sort: " << endl;
+  for (int num : nums)
   {
-    cout << arr[i] << " ";
+    cout << num << " ";
   }
+  cout << endl;
+
   return 0;
 }
