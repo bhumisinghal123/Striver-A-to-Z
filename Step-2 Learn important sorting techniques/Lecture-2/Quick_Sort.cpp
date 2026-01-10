@@ -3,24 +3,22 @@ using namespace std;
 
 int partition(vector<int> &arr, int low, int high)
 {
-  int pivot = arr[low];
-  int i = low;
-  int j = high;
-  while (i < j)
+  int pivot = arr[high];
+
+  int i = low - 1;
+
+  for (int j = low; j < high; j++)
   {
-    while (arr[i] <= pivot && i <= high - 1)
+    if (arr[j] <= pivot)
     {
       i++;
-    }
-    while (arr[j] > pivot && j >= low + 1)
-    {
-      j--;
-    }
-    if (i < j)
       swap(arr[i], arr[j]);
+    }
   }
-  swap(arr[low], arr[j]);
-  return j;
+
+  swap(arr[i + 1], arr[high]);
+
+  return i + 1;
 }
 
 void qs(vector<int> &arr, int low, int high)
