@@ -1,65 +1,95 @@
+/*
 #include <bits/stdc++.h>
 using namespace std;
 
-int longestSubarrayWithSumPositive(vector<int> a, long long k)
+class Solution
 {
-  /*
-  map<long long, int> preSumMap;
-  long long sum = 0;
-  int maxLen = 0;
-  for (int i = 0; i < a.size(); i++)
+public:
+  int longestSubarray(vector<int> &nums, int k)
   {
-    sum += a[i];
-    if (sum == k)
+    int n = nums.size();
+    int maxLength = 0;
+
+    for (int i = 0; i < n; i++)
     {
-      maxLen = (maxLen, i + 1);
+      for (int j = i; j < n; j++)
+      {
+        int currentSum = 0;
+        for (int i = i; i <= j; i++)
+        {
+          currentSum += nums[i];
+        }
+
+        if (currentSum == k)
+          maxLength = max(maxLength, j - i + 1);
+      }
     }
-    long long rem = sum - k;
-    if (preSumMap.find(rem) != preSumMap.end())
-    {
-      int len = i - preSumMap[rem];
-      maxLen = (maxLen, len);
-    }
-    if (preSumMap.find(sum) == preSumMap.end())
-    {
-      preSumMap[sum] = i;
-    }
+    return maxLength;
   }
-  return maxLen;
-  */
-  int left = 0, right = 0;
-  long long sum = a[0];
-  int maxLen = 0;
-  int n = a.size();
-  while (right < n)
-  {
-    while (left <= right && sum > k)
-    {
-      sum -= a[left];
-      left++;
-    }
-    if (sum == k)
-    {
-      maxLen = (maxLen, right - left + 1);
-    }
-    right++;
-    if (right < n)
-      sum += a[right];
-  }
-  return maxLen;
-}
+};
 
 int main()
 {
-  int n;
-  cin >> n;
-  long long k;
-  cin >> k;
-  vector<int> arr(n);
-  for (int i = 0; i < n; i++)
+  vector<int> a = {10, 5, 2, 7, 1, 9};
+  int k = 15;
+
+  Solution solution;
+  int len = solution.longestSubarray(a, k);
+
+  cout << "The length of the longest subarray is: " << len << "\n";
+  return 0;
+}
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+  int longestSubarray(vector<int> &nums, int k)
   {
-    cin >> arr[i];
+    int n = nums.size();
+
+    int maxLen = 0;
+
+    int left = 0, right = 0;
+
+    int sum = nums[0];
+
+    while (right < n)
+    {
+
+      while (left <= right && sum > k)
+      {
+        sum -= nums[left];
+        left++;
+      }
+
+      if (sum == k)
+      {
+        maxLen = max(maxLen, right - left + 1);
+      }
+
+      right++;
+      if (right < n)
+        sum += nums[right];
+    }
+
+    return maxLen;
   }
-  cout << longestSubarrayWithSumPositive(arr, k);
+};
+
+int main()
+{
+  vector<int> nums = {10, 5, 2, 7, 1, 9};
+  int k = 15;
+
+  Solution sol;
+
+  int ans = sol.longestSubarray(nums, k);
+
+  cout << "The length of longest subarray having sum k is: " << ans;
+
   return 0;
 }
