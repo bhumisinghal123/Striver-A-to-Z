@@ -15,9 +15,9 @@ public:
       for (int j = i; j < n; j++)
       {
         int currentSum = 0;
-        for (int i = i; i <= j; i++)
+        for (int ind = i; ind <= j; ind++)
         {
-          currentSum += nums[i];
+          currentSum += nums[ind];
         }
 
         if (currentSum == k)
