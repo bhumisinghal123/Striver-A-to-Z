@@ -25,7 +25,7 @@ int moveZero(int n, int arr[])
 }
 
 // Optimal solution
-/* int moveZero(int arr[], int n)
+/* int moveZero(int n, int arr[])
 {
   int j = 0;
 
