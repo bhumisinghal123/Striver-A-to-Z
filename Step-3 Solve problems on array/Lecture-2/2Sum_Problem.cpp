@@ -76,36 +76,50 @@ int main()
 #include <bits/stdc++.h>
 using namespace std;
 
-string read(int n, vector<int> book, int target)
+class Solution
 {
-  int left = 0, right = n - 1;
-  sort(book.begin(), book.end());
-  while (left < right)
+public:
+  vector<int> twoSumIndices(vector<int> &nums, int target)
   {
-    int sum = book[left] + book[right];
-    if (sum == target)
+    int n = nums.size();
+
+    vector<pair<int, int>> v;
+    for (int i = 0; i < n; i++)
     {
-      return "YES";
+      v.push_back({nums[i], i});
     }
-    else if (sum < target)
-      left++;
-    else
-      right--;
+
+    sort(v.begin(), v.end());
+
+    int left = 0;
+    int right = n - 1;
+
+    while (left < right)
+    {
+      int sum = v[left].first + v[right].first;
+
+      if (sum == target)
+      {
+        return {v[left].second, v[right].second};
+      }
+      else if (sum < target)
+        left++;
+      else
+        right--;
+    }
+
+    return {-1, -1};
   }
-  return "NO";
-}
+};
 
 int main()
 {
-  int n;
-  cin >> n;
-  long long k;
-  cin >> k;
-  vector<int> arr(n);
-  for (int i = 0; i < n; i++)
-  {
-    cin >> arr[i];
-  }
-  cout << read(n, arr, k);
+  Solution sol;
+  vector<int> arr = {2, 6, 5, 8, 11};
+  int target = 14;
+
+  vector<int> res = sol.twoSumIndices(arr, target);
+  cout << "[" << res[0] << ", " << res[1] << "]\n";
+
   return 0;
 }
