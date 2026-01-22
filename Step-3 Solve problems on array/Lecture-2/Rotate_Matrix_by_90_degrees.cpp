@@ -1,3 +1,49 @@
+/*
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+  vector<vector<int>> rotateClockwise(vector<vector<int>> &matrix)
+  {
+    int n = matrix.size();
+
+    vector<vector<int>> rotated(n, vector<int>(n));
+
+    for (int i = 0; i < n; i++)
+    {
+      for (int j = 0; j < n; j++)
+      {
+        rotated[j][n - i - 1] = matrix[i][j];
+      }
+    }
+
+    return rotated;
+  }
+};
+
+int main()
+{
+  vector<vector<int>> mat = {
+      {1, 2, 3},
+      {4, 5, 6},
+      {7, 8, 9}};
+
+  Solution obj;
+  vector<vector<int>> rotated = obj.rotateClockwise(mat);
+
+  for (auto row : rotated)
+  {
+    for (int val : row)
+      cout << val << " ";
+    cout << endl;
+  }
+
+  return 0;
+}
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
