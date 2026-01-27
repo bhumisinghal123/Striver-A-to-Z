@@ -2,140 +2,76 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int nCr(int n, int r) {
-    long long res = 1;
-
-    // calculating nCr:
-    for (int i = 0; i < r; i++) {
-        res = res * (n - i);
-        res = res / (i + 1);
-    }
-    return res;
-}
-
-int pascalTriangle(int r, int c) {
-    int element = nCr(r - 1, c - 1);
-    return element;
-}
-
-int main()
+class Solution
 {
-    int r = 5; // row number
-    int c = 3; // col number
-    int element = pascalTriangle(r, c);
-    cout << "The element at position (r,c) is: "
-            << element << "n";
-    return 0;
-}
-*/
-
-/*
-#include <bits/stdc++.h>
-using namespace std;
-
-int nCr(int n, int r)
-{
-  long long res = 1;
-
-  // calculating nCr:
-  for (int i = 0; i < r; i++)
+public:
+  vector<vector<int>> generate(int numRows)
   {
-    res = res * (n - i);
-    res = res / (i + 1);
-  }
-  return res;
-}
+    vector<vector<int>> triangle;
 
-void pascalTriangle(int n)
-{
-  // printing the entire row n:
-  for (int c = 1; c <= n; c++)
-  {
-    cout << nCr(n - 1, c - 1) << " ";
-  }
-  cout << "n";
-}
-
-int main()
-{
-  int n = 5;
-  pascalTriangle(n);
-  return 0;
-}
-*/
-
-/*
-#include <bits/stdc++.h>
-using namespace std;
-
-void pascalTriangle(int n)
-{
-  long long ans = 1;
-  cout << ans << " "; // printing 1st element
-
-  // Printing the rest of the part:
-  for (int i = 1; i < n; i++)
-  {
-    ans = ans * (n - i);
-    ans = ans / i;
-    cout << ans << " ";
-  }
-  cout << endl;
-}
-
-int main()
-{
-  int n = 5;
-  pascalTriangle(n);
-  return 0;
-}
-*/
-
-/*
-#include <bits/stdc++.h>
-using namespace std;
-
-int nCr(int n, int r)
-{
-  long long res = 1;
-
-  // calculating nCr:
-  for (int i = 0; i < r; i++)
-  {
-    res = res * (n - i);
-    res = res / (i + 1);
-  }
-  return (int)(res);
-}
-
-vector<vector<int>> pascalTriangle(int n)
-{
-  vector<vector<int>> ans;
-
-  // Store the entire pascal's triangle:
-  for (int row = 1; row <= n; row++)
-  {
-    vector<int> tempLst; // temporary list
-    for (int col = 1; col <= row; col++)
+    for (int i = 0; i < numRows; i++)
     {
-      tempLst.push_back(nCr(row - 1, col - 1));
+      vector<int> row(i + 1, 1);
+
+      for (int j = 1; j < i; j++)
+      {
+        row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+      }
+
+      triangle.push_back(row);
     }
-    ans.push_back(tempLst);
+    return triangle;
   }
-  return ans;
-}
+};
 
 int main()
 {
+  Solution obj;
   int n = 5;
-  vector<vector<int>> ans = pascalTriangle(n);
-  for (auto it : ans)
+
+  vector<vector<int>> result = obj.generate(n);
+  for (auto &row : result)
   {
-    for (auto ele : it)
+    for (auto &val : row)
+      cout << val << " ";
+    cout << endl;
+  }
+}
+*/
+
+/*
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+  vector<long long> getNthRow(int N)
+  {
+    vector<long long> row;
+
+    long long val = 1;
+    row.push_back(val);
+
+    for (int k = 1; k < N; k++)
     {
-      cout << ele << " ";
+      val = val * (N - k) / k;
+      row.push_back(val);
     }
-    cout << "n";
+
+    return row;
+  }
+};
+
+int main()
+{
+  int N = 5;
+  Solution sol;
+  vector<long long> result = sol.getNthRow(N);
+
+  for (auto num : result)
+  {
+    cout << num << " ";
   }
   return 0;
 }
@@ -144,45 +80,30 @@ int main()
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> generateRow(int row)
+class Solution
 {
-  long long ans = 1;
-  vector<int> ansRow;
-  ansRow.push_back(1); // inserting the 1st element
-
-  // calculate the rest of the elements:
-  for (int col = 1; col < row; col++)
+public:
+  long long findPascalElement(int r, int c)
   {
-    ans = ans * (row - col);
-    ans = ans / col;
-    ansRow.push_back(ans);
-  }
-  return ansRow;
-}
+    int n = r - 1;
+    int k = c - 1;
 
-vector<vector<int>> pascalTriangle(int n)
-{
-  vector<vector<int>> ans;
+    long long result = 1;
 
-  // store the entire pascal's triangle:
-  for (int row = 1; row <= n; row++)
-  {
-    ans.push_back(generateRow(row));
+    for (int i = 0; i < k; i++)
+    {
+      result *= (n - i);
+      result /= (i + 1);
+    }
+
+    return result;
   }
-  return ans;
-}
+};
 
 int main()
 {
-  int n = 5;
-  vector<vector<int>> ans = pascalTriangle(n);
-  for (auto it : ans)
-  {
-    for (auto ele : it)
-    {
-      cout << ele << " ";
-    }
-    cout << "n";
-  }
+  Solution sol;
+  int r = 5, c = 3;
+  cout << sol.findPascalElement(r, c);
   return 0;
 }
