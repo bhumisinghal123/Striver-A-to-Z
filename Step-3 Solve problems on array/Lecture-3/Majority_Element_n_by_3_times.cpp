@@ -3,23 +3,18 @@
 using namespace std;
 
 vector<int> majorityElement(vector<int> v) {
-    int n = v.size(); //size of the array
-    vector<int> ls; // list of answers
+    int n = v.size();
+    vector<int> ls;
 
     for (int i = 0; i < n; i++) {
-        //selected element is v[i]:
-        // Checking if v[i] is not already
-        // a part of the answer:
         if (ls.size() == 0 || ls[0] != v[i]) {
             int cnt = 0;
             for (int j = 0; j < n; j++) {
-                // counting the frequency of v[i]
                 if (v[j] == v[i]) {
                     cnt++;
                 }
             }
 
-            // check if frquency is greater than n/3:
             if (cnt > (n / 3))
                 ls.push_back(v[i]);
         }
@@ -48,22 +43,17 @@ using namespace std;
 
 vector<int> majorityElement(vector<int> v)
 {
-  int n = v.size(); // size of the array
-  vector<int> ls;   // list of answers
+  int n = v.size();
+  vector<int> ls;
 
-  // declaring a map:
   map<int, int> mpp;
 
-  // least occurrence of the majority element:
   int mini = int(n / 3) + 1;
 
-  // storing the elements with its occurnce:
   for (int i = 0; i < n; i++)
   {
     mpp[v[i]]++;
 
-    // checking if v[i] is
-    //  the majority element:
     if (mpp[v[i]] == mini)
     {
       ls.push_back(v[i]);
@@ -92,13 +82,12 @@ using namespace std;
 
 vector<int> majorityElement(vector<int> v)
 {
-  int n = v.size(); // size of the array
+  int n = v.size();
 
-  int cnt1 = 0, cnt2 = 0; // counts
-  int el1 = INT_MIN;      // element 1
-  int el2 = INT_MIN;      // element 2
+  int cnt1 = 0, cnt2 = 0;
+  int el1 = INT_MIN;
+  int el2 = INT_MIN;
 
-  // applying the Extended Boyer Moore's Voting Algorithm:
   for (int i = 0; i < n; i++)
   {
     if (cnt1 == 0 && el2 != v[i])
@@ -121,10 +110,8 @@ vector<int> majorityElement(vector<int> v)
     }
   }
 
-  vector<int> ls; // list of answers
+  vector<int> ls;
 
-  // Manually check if the stored elements in
-  // el1 and el2 are the majority elements:
   cnt1 = 0, cnt2 = 0;
   for (int i = 0; i < n; i++)
   {
@@ -139,10 +126,6 @@ vector<int> majorityElement(vector<int> v)
     ls.push_back(el1);
   if (cnt2 >= mini)
     ls.push_back(el2);
-
-  // Uncomment the following line
-  // if it is told to sort the answer array:
-  // sort(ls.begin(), ls.end()); //TC --> O(2*log2) ~ O(1);
 
   return ls;
 }
