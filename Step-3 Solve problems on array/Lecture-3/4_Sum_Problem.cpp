@@ -3,10 +3,9 @@
 using namespace std;
 
 vector<vector<int>> fourSum(vector<int>& nums, int target) {
-    int n = nums.size(); //size of the array
+    int n = nums.size();
     set<vector<int>> st;
 
-    //checking all possible quadruplets:
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
             for (int k = j + 1; k < n; k++) {
@@ -52,10 +51,9 @@ using namespace std;
 
 vector<vector<int>> fourSum(vector<int> &nums, int target)
 {
-  int n = nums.size(); // size of the array
+  int n = nums.size();
   set<vector<int>> st;
 
-  // checking all possible quadruplets:
   for (int i = 0; i < n; i++)
   {
     for (int j = i + 1; j < n; j++)
@@ -63,8 +61,6 @@ vector<vector<int>> fourSum(vector<int> &nums, int target)
       set<long long> hashset;
       for (int k = j + 1; k < n; k++)
       {
-        // taking bigger data type
-        // to avoid integer overflow:
         long long sum = nums[i] + nums[j];
         sum += nums[k];
         long long fourth = target - sum;
@@ -74,7 +70,6 @@ vector<vector<int>> fourSum(vector<int> &nums, int target)
           sort(temp.begin(), temp.end());
           st.insert(temp);
         }
-        // put the kth element into the hashset:
         hashset.insert(nums[k]);
       }
     }
@@ -108,25 +103,20 @@ using namespace std;
 
 vector<vector<int>> fourSum(vector<int> &nums, int target)
 {
-  int n = nums.size(); // size of the array
+  int n = nums.size();
   vector<vector<int>> ans;
 
-  // sort the given array:
   sort(nums.begin(), nums.end());
 
-  // calculating the quadruplets:
   for (int i = 0; i < n; i++)
   {
-    // avoid the duplicates while moving i:
     if (i > 0 && nums[i] == nums[i - 1])
       continue;
     for (int j = i + 1; j < n; j++)
     {
-      // avoid the duplicates while moving j:
       if (j > i + 1 && nums[j] == nums[j - 1])
         continue;
 
-      // 2 pointers:
       int k = j + 1;
       int l = n - 1;
       while (k < l)
@@ -142,7 +132,6 @@ vector<vector<int>> fourSum(vector<int> &nums, int target)
           k++;
           l--;
 
-          // skip the duplicates:
           while (k < l && nums[k] == nums[k - 1])
             k++;
           while (k < l && nums[l] == nums[l + 1])
