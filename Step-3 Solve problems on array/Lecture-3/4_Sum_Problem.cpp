@@ -11,8 +11,6 @@ vector<vector<int>> fourSum(vector<int>& nums, int target) {
         for (int j = i + 1; j < n; j++) {
             for (int k = j + 1; k < n; k++) {
                 for (int l = k + 1; l < n; l++) {
-                    // taking bigger data type
-                    // to avoid integer overflow:
                     long long sum = nums[i] + nums[j];
                     sum += nums[k];
                     sum += nums[l];
