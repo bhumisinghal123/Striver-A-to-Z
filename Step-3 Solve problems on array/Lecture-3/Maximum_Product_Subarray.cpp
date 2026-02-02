@@ -38,7 +38,7 @@ int maxProductSubArray(vector<int>& nums) {
            result = max(result,p);
            p *= nums[j];
         }
-        result = max(result,p);//manages (n-1)th term
+        result = max(result,p);
     }
     return result;
 }
