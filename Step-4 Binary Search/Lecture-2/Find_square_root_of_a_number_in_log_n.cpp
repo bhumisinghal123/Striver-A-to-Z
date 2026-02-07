@@ -4,7 +4,6 @@ using namespace std;
 
 int floorSqrt(int n) {
     int ans = 0;
-    //linear search on the answer space:
     for (long long i = 1; i <= n; i++) {
         long long val = i * i;
         if (val <= n * 1ll) {
