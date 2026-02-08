@@ -92,17 +92,19 @@ int roseGarden(vector<int> arr, int r, int b)
     maxi = max(maxi, arr[i]);
   }
   int low = mini, high = maxi;
+  int result = -1;
   while (low <= high)
   {
     int mid = (low + high) / 2;
     if (possible(arr, mid, r, b))
     {
+      result = mid;
       high = mid - 1;
     }
     else
       low = mid + 1;
   }
-  return low;
+  return result;
 }
 
 int main()

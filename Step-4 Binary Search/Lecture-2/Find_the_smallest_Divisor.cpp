@@ -35,8 +35,8 @@ using namespace std;
 
 int sumByD(vector<int> &arr, int div)
 {
-  int n = arr.size(); // size of array
-  // Find the summation of division values:
+  int n = arr.size();
+
   int sum = 0;
   for (int i = 0; i < n; i++)
   {
@@ -51,13 +51,14 @@ int smallestDivisor(vector<int> &arr, int limit)
   if (n > limit)
     return -1;
   int low = 1, high = *max_element(arr.begin(), arr.end());
-
-  // Apply binary search:
+  int result = -1;
   while (low <= high)
   {
     int mid = (low + high) / 2;
+
     if (sumByD(arr, mid) <= limit)
     {
+      result = mid;
       high = mid - 1;
     }
     else
@@ -65,7 +66,7 @@ int smallestDivisor(vector<int> &arr, int limit)
       low = mid + 1;
     }
   }
-  return low;
+  return result;
 }
 
 int main()
