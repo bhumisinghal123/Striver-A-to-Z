@@ -83,7 +83,7 @@ using namespace std;
 
 int numberOfGasStationsRequired(long double dist, vector<int> &arr)
 {
-  int n = arr.size(); // size of the array
+  int n = arr.size();
   int cnt = 0;
   for (int i = 1; i < n; i++)
   {
