@@ -7,7 +7,6 @@ int rowWithMax1s(vector<vector<int>> &matrix, int n, int m)
   int cnt_max = 0;
   int index = -1;
 
-  // traverse the matrix:
   for (int i = 0; i < n; i++)
   {
     int cnt_ones = 0;

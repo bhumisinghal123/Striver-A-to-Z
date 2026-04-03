@@ -6,7 +6,6 @@ int kthElement(vector<int> &a, vector<int> &b, int m, int n, int k)
 {
   vector<int> arr3;
 
-  // apply the merge step:
   int i = 0, j = 0;
   while (i < m && j < n)
   {
@@ -16,7 +15,6 @@ int kthElement(vector<int> &a, vector<int> &b, int m, int n, int k)
       arr3.push_back(b[j++]);
   }
 
-  // copy the left-out elements:
   while (i < m)
     arr3.push_back(a[i++]);
   while (j < n)
@@ -39,8 +37,7 @@ using namespace std;
 int kthElement(vector<int> &a, vector<int> &b, int m, int n, int k)
 {
   int ele = -1;
-  int cnt = 0; // counter
-  // apply the merge step:
+  int cnt = 0;
   int i = 0, j = 0;
   while (i < m && j < n)
   {
@@ -60,7 +57,6 @@ int kthElement(vector<int> &a, vector<int> &b, int m, int n, int k)
     }
   }
 
-  // copy the left-out elements:
   while (i < m)
   {
     if (cnt == k - 1)
