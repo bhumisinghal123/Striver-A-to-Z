@@ -6,7 +6,6 @@ bool searchElement(vector<vector<int>> &matrix, int target)
 {
   int n = matrix.size(), m = matrix[0].size();
 
-  // traverse the matrix:
   for (int i = 0; i < n; i++)
   {
     for (int j = 0; j < m; j++)
@@ -32,10 +31,9 @@ using namespace std;
 
 bool binarySearch(vector<int> &nums, int target)
 {
-  int n = nums.size(); // size of the array
+  int n = nums.size();
   int low = 0, high = n - 1;
 
-  // Perform the steps:
   while (low <= high)
   {
     int mid = (low + high) / 2;
